@@ -63,6 +63,22 @@ prankAudio.loop = true; // Mengatur audio agar diulang-ulang
 function playPrank() {
     prankAudio.play();
     document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
+    
+    // Masukkan halaman ke fullscreen
+    goFullscreen();
+}
+
+// Fungsi untuk mengaktifkan fullscreen
+function goFullscreen() {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
+        document.documentElement.mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        document.documentElement.webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
+        document.documentElement.msRequestFullscreen();
+    }
 }
 
 document.querySelector("h1").addEventListener("click", playPrank);
