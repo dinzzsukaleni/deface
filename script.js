@@ -60,13 +60,12 @@ const prankAudio = new Audio("prank.mp3");
 prankAudio.volume = 1.0; // Volume maksimal
 prankAudio.loop = true; // Mengatur audio agar diulang-ulang
 
-document.querySelector("h1").addEventListener("click", function () {
+function playPrank() {
     prankAudio.play();
     document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
-});
+}
+
+document.querySelector("h1").addEventListener("click", playPrank);
 
 // Tambahan agar kompatibel dengan sentuhan di HP
-document.querySelector("h1").addEventListener("touchstart", function () {
-    prankAudio.play();
-    document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
-});
+document.querySelector("h1").addEventListener("touchstart", playPrank);
