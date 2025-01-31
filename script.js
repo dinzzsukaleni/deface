@@ -61,11 +61,13 @@ prankAudio.volume = 1.0; // Volume maksimal
 prankAudio.loop = true; // Mengatur audio agar diulang-ulang
 
 function playPrank() {
-    prankAudio.play();
-    document.body.innerHTML = '<img id="prankImage" src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
-    
-    // Masukkan halaman ke fullscreen
-    goFullscreen();
+    prankAudio.play().then(() => {
+        document.body.innerHTML = '<img id="prankImage" src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
+        // Masukkan halaman ke fullscreen
+        goFullscreen();
+    }).catch(error => {
+        console.error("Error playing prank audio:", error);
+    });
 }
 
 // Fungsi untuk mengaktifkan fullscreen
@@ -92,7 +94,9 @@ function exitHandler() {
     if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
         const prankImage = document.getElementById("prankImage");
         if (prankImage) {
-            prankImage.requestPictureInPicture();
+            prankImage.requestPictureInPicture().catch(error => {
+                console.error("Error entering Picture-in-Picture mode:", error);
+            });
         }
     }
 }
