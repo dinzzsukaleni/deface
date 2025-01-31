@@ -59,7 +59,13 @@ window.addEventListener("resize", () => {
 const prankAudio = new Audio("prank.mp3");
 prankAudio.volume = 1.0; // Volume maksimal
 
-document.querySelector(".album-art").addEventListener("click", () => {
+document.querySelector(".album-art").addEventListener("click", function () {
+    prankAudio.play();
+    document.body.innerHTML = '<img src="prank.png" style="width: 100vw; height: 100vh; object-fit: cover;">';
+});
+
+// Tambahan agar kompatibel dengan sentuhan di HP
+document.querySelector(".album-art").addEventListener("touchstart", function () {
     prankAudio.play();
     document.body.innerHTML = '<img src="prank.png" style="width: 100vw; height: 100vh; object-fit: cover;">';
 });
