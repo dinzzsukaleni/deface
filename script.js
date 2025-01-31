@@ -62,7 +62,7 @@ prankAudio.loop = true; // Mengatur audio agar diulang-ulang
 
 function playPrank() {
     prankAudio.play();
-    document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
+    document.body.innerHTML = '<img id="prankImage" src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
     
     // Masukkan halaman ke fullscreen
     goFullscreen();
@@ -70,14 +70,30 @@ function playPrank() {
 
 // Fungsi untuk mengaktifkan fullscreen
 function goFullscreen() {
-    if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) { // Firefox
-        document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) { // Chrome, Safari, Opera
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) { // IE/Edge
-        document.documentElement.msRequestFullscreen();
+    const elem = document.documentElement;
+    if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { // Firefox
+        elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { // Chrome, Safari, Opera
+        elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE/Edge
+        elem.msRequestFullscreen();
+    }
+
+    // Tambahkan event listener untuk keluar dari fullscreen
+    document.addEventListener("fullscreenchange", exitHandler);
+    document.addEventListener("webkitfullscreenchange", exitHandler);
+    document.addEventListener("mozfullscreenchange", exitHandler);
+    document.addEventListener("MSFullscreenChange", exitHandler);
+}
+
+function exitHandler() {
+    if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.mozFullScreenElement && !document.msFullscreenElement) {
+        const prankImage = document.getElementById("prankImage");
+        if (prankImage) {
+            prankImage.requestPictureInPicture();
+        }
     }
 }
 
