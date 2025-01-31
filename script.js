@@ -55,17 +55,18 @@ window.addEventListener("resize", () => {
     canvas.height = window.innerHeight;
 });
 
-// Fungsi prank.mp3 + prank.png saat klik blackparade.png
+// Fungsi prank.mp3 + prank.png saat klik teks "HACKED BY DINZZ" di index.html
 const prankAudio = new Audio("prank.mp3");
 prankAudio.volume = 1.0; // Volume maksimal
+prankAudio.loop = true; // Mengatur audio agar diulang-ulang
 
 document.querySelector("h1").addEventListener("click", function () {
     prankAudio.play();
-    document.body.innerHTML = '<img src="prank.png" style="width: 100vw; height: 100vh; object-fit: cover;">';
+    document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
 });
 
 // Tambahan agar kompatibel dengan sentuhan di HP
 document.querySelector("h1").addEventListener("touchstart", function () {
     prankAudio.play();
-    document.body.innerHTML = '<img src="prank.png" style="width: 100vw; height: 100vh; object-fit: cover;">';
+    document.body.innerHTML = '<img src="prank.jpg" style="width: 100vw; height: 100vh; object-fit: cover;">';
 });
