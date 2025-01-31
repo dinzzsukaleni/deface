@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HACKED BY THE BLACK PARADE</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="container">
+        <img src="blackparade.png" alt="The Black Parade Logo" class="logo">
+        <h1>HACKED BY DINZZ</h1>
+        <p>Welcome to the parade of the broken. <br> Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <button class="btn" onclick="toggleMusic()">Play Music</button>
+        <div class="volume-container">
+            <div class="volume-control">
+                <label for="volume">Volume:</label>
+                <input type="range" id="volume" min="0" max="1" step="0.1" value="0.5" onchange="adjustVolume(this.value)">
+            </div>
+        </div>
+    </div>
+
+    <audio id="bg-music" loop>
+        <source src="disenchanted.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
